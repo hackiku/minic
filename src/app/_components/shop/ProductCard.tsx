@@ -11,17 +11,17 @@ interface ProductCardProps {
 
 export function ProductCard({ id, name, price, imageUrl }: ProductCardProps) {
 	return (
-		<Link href={`/shop/${id}`} className="group">
-			<div className="border border-neutral-800 hover:border-[#FF7CC3]/50 transition-colors p-4 pb-6">
-				<div className="relative aspect-square mb-4 overflow-hidden">
-					{/* Product image placeholder - you can replace with next/image later */}
+		<Link href={`/shop/${id}`} className="group block">
+			<div className="border border-neutral-800 hover:border-[#FF7CC3]/50 transition-colors p-4 pb-6 h-full">
+				<div className="relative aspect-square mb-4 overflow-hidden bg-neutral-900">
+					{/* Product image placeholder */}
 					<div
-						className="w-full h-full bg-neutral-900 flex items-center justify-center"
-						style={{
-							backgroundImage: imageUrl ? `url(${imageUrl})` : 'none',
+						className="w-full h-full flex items-center justify-center"
+						style={imageUrl ? {
+							backgroundImage: `url(${imageUrl})`,
 							backgroundSize: 'cover',
 							backgroundPosition: 'center'
-						}}
+						} : {}}
 					>
 						{!imageUrl && (
 							<span className="text-sm text-neutral-600">Image placeholder</span>
@@ -36,7 +36,7 @@ export function ProductCard({ id, name, price, imageUrl }: ProductCardProps) {
 					</div>
 				</div>
 
-				<h3 className="text-lg font-light mb-1">{name}</h3>
+				<h3 className="text-base md:text-lg font-light mb-1 line-clamp-2">{name}</h3>
 				<p className="text-[#FF7CC3]">${price.toFixed(2)}</p>
 			</div>
 		</Link>

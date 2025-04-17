@@ -14,11 +14,7 @@ const mockProducts = [
 
 export function ProductGallery() {
 	return (
-		<div className="py-16 px-6 md:px-12">
-			<div className="flex justify-between items-center mb-8">
-				<h2 className="text-2xl font-serif">Featured Pieces</h2>
-				<a href="/shop" className="text-sm uppercase text-[#FF7CC3] hover:underline">View All</a>
-			</div>
+		<div className="px-6 md:px-12">
 
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{mockProducts.map(product => (

@@ -1,54 +1,54 @@
 // src/app/_components/layout/Hero.tsx
-import React from 'react';
-import ShopNow from '../cta/ShopNow';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import EmailForm from '../cta/EmailForm';
+import WireframeSphere from '../3d/WireframeSphere';
 
 export function Hero() {
-	return (
-		<div className="h-screen flex flex-col md:flex-row">
-			{/* Left content - headline, subhead, CTA */}
-			<div className="flex-1 flex flex-col justify-center px-6 md:px-24 mt-24">
-				{/* <h1 className="text-6xl md:text-2xl font-serif mb-6 text-[#FF7CC3]">
-					EVA
-				</h1> */}
-				<p className="text-xl md:text-3xl font-light mb-4 max-w-lg">
-					Who'll you give the apple to?
-				</p>
+  const [sphereSize, setSphereSize] = useState(400);
+  
+  // Responsive sizing for the sphere
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setSphereSize(250);
+      } else if (window.innerWidth < 1024) {
+        setSphereSize(350);
+      } else {
+        setSphereSize(450);
+      }
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-				<div className="space-y-4 mt-4">
-					<EmailForm />
-
-				</div>
-			</div>
-
-			{/* Right content - wireframe sphere */}
-			<div className="flex-1 flex items-center justify-center relative">
-				{/* This will be replaced with 3D later, for now using SVG */}
-				<div className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] relative">
-					{/* Simple wireframe sphere placeholder using SVG */}
-					<svg viewBox="0 0 100 100" className="w-full h-full">
-						{/* Horizontal circles */}
-						<circle cx="50" cy="50" r="45" fill="none" stroke="#FF7CC3" strokeWidth="0.5" opacity="0.3" />
-						<circle cx="50" cy="50" r="35" fill="none" stroke="#FF7CC3" strokeWidth="0.5" opacity="0.5" />
-						<circle cx="50" cy="50" r="25" fill="none" stroke="#FF7CC3" strokeWidth="0.5" opacity="0.7" />
-						<circle cx="50" cy="50" r="15" fill="none" stroke="#FF7CC3" strokeWidth="0.5" opacity="0.9" />
-
-						{/* Vertical ellipses to create 3D effect */}
-						<ellipse cx="50" cy="50" rx="45" ry="15" fill="none" stroke="#FF7CC3" strokeWidth="0.5" opacity="0.3" />
-						<ellipse cx="50" cy="50" rx="35" ry="12" fill="none" stroke="#FF7CC3" strokeWidth="0.5" opacity="0.5" />
-						<ellipse cx="50" cy="50" rx="25" ry="8" fill="none" stroke="#FF7CC3" strokeWidth="0.5" opacity="0.7" />
-						<ellipse cx="50" cy="50" rx="15" ry="5" fill="none" stroke="#FF7CC3" strokeWidth="0.5" opacity="0.9" />
-
-						{/* Perpendicular ellipses */}
-						<ellipse cx="50" cy="50" rx="15" ry="45" fill="none" stroke="#FF7CC3" strokeWidth="0.5" opacity="0.3" transform="rotate(45 50 50)" />
-						<ellipse cx="50" cy="50" rx="12" ry="35" fill="none" stroke="#FF7CC3" strokeWidth="0.5" opacity="0.5" transform="rotate(45 50 50)" />
-						<ellipse cx="50" cy="50" rx="8" ry="25" fill="none" stroke="#FF7CC3" strokeWidth="0.5" opacity="0.7" transform="rotate(45 50 50)" />
-						<ellipse cx="50" cy="50" rx="5" ry="15" fill="none" stroke="#FF7CC3" strokeWidth="0.5" opacity="0.9" transform="rotate(45 50 50)" />
-					</svg>
-				</div>
-			</div>
-		</div>
-	);
+  return (
+    <div className="container mx-auto px-4 md:px-6 relative">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-16 md:pt-24">
+        {/* Content Column */}
+        <div className="relative z-10 flex flex-col justify-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-neutral-600 leading-tight mb-8">
+            Who will you give the apple to?
+          </h1>
+          
+          <div className="max-w-md">
+            <EmailForm />
+          </div>
+        </div>
+        
+        {/* Visual Column */}
+        <div className="relative flex items-center justify-center md:justify-end">
+          <WireframeSphere 
+            size={sphereSize} 
+            className="opacity-80" 
+          />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Hero;
