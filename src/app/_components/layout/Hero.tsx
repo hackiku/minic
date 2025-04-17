@@ -7,19 +7,17 @@ export function Hero() {
 	return (
 		<div className="h-screen flex flex-col md:flex-row">
 			{/* Left content - headline, subhead, CTA */}
-			<div className="flex-1 flex flex-col justify-center px-6 md:px-12 py-12">
-				<h1 className="text-6xl md:text-8xl font-serif mb-6 text-[#FF7CC3]">
+			<div className="flex-1 flex flex-col justify-center px-6 md:px-24 mt-24">
+				{/* <h1 className="text-6xl md:text-2xl font-serif mb-6 text-[#FF7CC3]">
 					EVA
-				</h1>
-				<p className="text-xl md:text-3xl font-light mb-8 max-w-lg">
-					Who's the apple for? Handcrafted lingerie that makes you feel everything
+				</h1> */}
+				<p className="text-xl md:text-3xl font-light mb-4 max-w-lg">
+					Who'll you give the apple to?
 				</p>
 
 				<div className="space-y-4 mt-4">
 					<EmailForm />
-					<div className="mt-4">
-						<ShopNow />
-					</div>
+
 				</div>
 			</div>
 
