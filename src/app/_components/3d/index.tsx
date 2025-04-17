@@ -1,16 +1,13 @@
 // src/app/_components/3d/index.ts
 
-// Re-export components for easier imports
-export { default as Scene } from './Scene';
-export * from './data/colors';
+'use client';
 
-// World components
+// Simple exports
+export { default as Scene } from './Scene';
 export { default as AppleModel } from './world/AppleModel';
 export { default as Camera } from './world/Camera';
 export { default as Glitter } from './world/Glitter';
-
-// Composite Apple component
-'use client';
+export * from './data/colors';
 
 import React from 'react';
 import dynamic from 'next/dynamic';
@@ -19,19 +16,25 @@ import dynamic from 'next/dynamic';
 const DynamicScene = dynamic(() => import('./Scene'), { ssr: false });
 const DynamicAppleModel = dynamic(() => import('./world/AppleModel'), { ssr: false });
 
-// Create the Apple component (only once)
-function AppleComponent({
-	size = 400,
-	color = "#FF7CC3",
-	className = "",
-	opacity = 0.7,
-	segments = 24,
-	rotationSpeed = 0.2,
-}) {
+// Create a simple Apple component
+function AppleComponent(props) {
+	const {
+		size = 400,
+		color = "#FF7CC3",
+		className = "",
+		opacity = 0.7,
+		segments = 24,
+		rotationSpeed = 0.2,
+	} = props;
+
 	return (
-		<div
+		<div 
       className= { className }
-	style = {{ width: `${size}px`, height: `${size}px`, position: 'relative' }
+	style = {{
+		width: `${size}px`,
+			height: `${size}px`,
+				position: 'relative'
+	}
 }
     >
 	<DynamicScene>
@@ -46,8 +49,5 @@ rotationSpeed = { rotationSpeed }
   );
 }
 
-// Export the Apple component
 export const Apple = AppleComponent;
-
-// Default export is the Scene component
-export default Scene;
+export default dynamic(() => import('./Scene'), { ssr: false });
