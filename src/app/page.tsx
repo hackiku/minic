@@ -3,51 +3,43 @@ import Link from "next/link";
 import { LatestPost } from "~/app/_components/post";
 import { HydrateClient, api } from "~/trpc/server";
 
-export default async function Home() {
-	const hello = await api.post.hello({ text: "from tRPC" });
-
-	void api.post.getLatest.prefetch();
-
+// src/app/page.tsx
+export default function Home() {
 	return (
-		<HydrateClient>
-			<main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-				<div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-					<h1 className="font-extrabold text-5xl tracking-tight sm:text-[5rem]">
-						Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-					</h1>
-					<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-						<Link
-							className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-							href="https://create.t3.gg/en/usage/first-steps"
-							target="_blank"
-						>
-							<h3 className="font-bold text-2xl">First Steps →</h3>
-							<div className="text-lg">
-								Just the basics - Everything you need to know to set up your
-								database and authentication.
-							</div>
-						</Link>
-						<Link
-							className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-							href="https://create.t3.gg/en/introduction"
-							target="_blank"
-						>
-							<h3 className="font-bold text-2xl">Documentation →</h3>
-							<div className="text-lg">
-								Learn more about Create T3 App, the libraries it uses, and how
-								to deploy it.
-							</div>
-						</Link>
+		<main className="min-h-screen bg-black text-white">
+			<div className="container mx-auto px-4">
+				{/* Hero with glitchy 3D */}
+				<section className="h-screen flex items-center justify-center relative">
+					<div className="absolute inset-0 opacity-30">
+						{/* <GlitchModel /> */}
 					</div>
-					<div className="flex flex-col items-center gap-2">
-						<p className="text-2xl text-white">
-							{hello ? hello.greeting : "Loading tRPC query..."}
+
+					<div className="z-10 text-center">
+						<h1 className="text-5xl md:text-8xl font-serif tracking-tight">
+							EVA
+						</h1>
+						<p className="text-xl md:text-2xl font-sans uppercase tracking-widest mt-4">
+							Lingerie that feels like a second skin
+						</p>
+						<button className="mt-8 px-8 py-3 bg-pink-500 hover:bg-pink-600 rounded-none font-mono uppercase tracking-wider">
+							Shop Now
+						</button>
+					</div>
+				</section>
+
+				{/* Quick manifesto */}
+				<section className="py-20 grid grid-cols-1 md:grid-cols-2 gap-16">
+					<div>
+						<h2 className="text-3xl font-mono uppercase mb-6">Why Pay For A Therapist When You Can Buy Lingerie</h2>
+						<p className="text-gray-300 font-serif leading-relaxed">
+							Hand-stitched in Europe, delivered to your door with notes that'll make you feel seen. This isn't just lace - it's self-care with an edge.
 						</p>
 					</div>
-
-					<LatestPost />
-				</div>
-			</main>
-		</HydrateClient>
+					<div className="bg-gradient-to-b from-pink-500/20 to-transparent p-12">
+						<img src="/images/lace-detail.jpg" alt="Lace detail" className="mix-blend-screen" />
+					</div>
+				</section>
+			</div>
+		</main>
 	);
 }
