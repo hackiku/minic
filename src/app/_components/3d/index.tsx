@@ -28,25 +28,24 @@ function AppleComponent(props) {
 	} = props;
 
 	return (
-		<div 
-      className= { className }
-	style = {{
-		width: `${size}px`,
-			height: `${size}px`,
+		<div
+			className={className}
+			style={{
+				width: `${size}px`,
+				height: `${size}px`,
 				position: 'relative'
-	}
-}
-    >
-	<DynamicScene>
-	<DynamicAppleModel
-          color={ color }
-opacity = { opacity }
-segments = { segments }
-rotationSpeed = { rotationSpeed }
-	/>
-	</DynamicScene>
-	</div>
-  );
+			}}
+		>
+			<DynamicScene>
+				<DynamicAppleModel
+					color={color}
+					opacity={opacity}
+					segments={segments}
+					rotationSpeed={rotationSpeed}
+				/>
+			</DynamicScene>
+		</div>
+	);
 }
 
 export const Apple = AppleComponent;

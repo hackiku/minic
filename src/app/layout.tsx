@@ -3,7 +3,8 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import Nav from "./_components/layout/Nav";
+import Nav from "~/components/layout/Nav";
+import Footer from "~/components/layout/Footer";
 
 import { TRPCReactProvider } from "~/trpc/react";
 
@@ -26,6 +27,7 @@ export default function RootLayout({
 			<body className="bg-neutral-950 text-white">
 				<Nav />
 				<TRPCReactProvider>{children}</TRPCReactProvider>
+				<Footer />
 			</body>
 		</html>
 	);

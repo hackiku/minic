@@ -18,14 +18,14 @@ export default function Home() {
 			{/* Hero Section */}
 			<section className="relative w-full flex flex-col items-center">
 				{/* Header content */}
-				<div className="container mx-auto px-6 pt-20 md:pt-20 relative z-10">
+				<div className="container mx-auto px-6 pt-20 md:pt-32 md:pb-20 relative z-10">
 					<div className="max-w-3xl">
-						<h1 className="text-4xl md:text-6xl lg:text-8xl font-light 
-						text-[#FF7AC4]/10 font-serif leading-tight">
+						<h1 className="text-4xl md:text-6xl lg:text-3xl font-light 
+						text-[#FF7AC4]/70 font-serif leading-tight">
 							Who will you give the apple to?
 						</h1>
 
-						<div className="mt-8 md:mt-12 max-w-md">
+						<div className="mt-4 md:mt-6 max-w-md">
 							<EmailForm />
 						</div>
 					</div>
