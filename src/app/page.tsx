@@ -1,6 +1,8 @@
 // src/app/page.tsx
 import EmailForm from "./_components/cta/EmailForm";
 import ShopGrid from "./_components/shop/ShopGrid";
+import InstagramFeed from "./_components/instagram/InstagramFeed";
+import Hero from "~/app/_components/content/Hero";
 import dynamic from 'next/dynamic';
 
 // Dynamically import the Apple component 
@@ -14,33 +16,20 @@ const Apple = dynamic(() => import('./_components/3d').then(mod => mod.Apple), {
 
 export default function Home() {
 	return (
-		<main className="min-h-screen bg-neutral-950 text-white">
+		<main className="min-h-screen">
 			{/* Hero Section */}
-			<section className="relative w-full flex flex-col items-center">
-				{/* Header content */}
-				<div className="container mx-auto px-6 pt-20 md:pt-32 md:pb-20 relative z-10">
-					<div className="max-w-3xl">
-						<h1 className="text-4xl md:text-6xl lg:text-3xl font-light 
-						text-[#FF7AC4]/70 font-serif leading-tight">
-							Who will you give the apple to?
-						</h1>
+			<Hero />
 
-						<div className="mt-4 md:mt-6 max-w-md">
-							<EmailForm />
-						</div>
-					</div>
-				</div>
-
-				{/* 3D Apple */}
-				<div className="absolute right-0 md:right-[10%] top-[20%] md:top-[25%] z-0 opacity-70">
-					<Apple
-						size={300}
-						className="md:w-[400px] lg:w-[500px]"
-						color="#FF7CC3"
-						opacity={0.7}
-						segments={24}
-						rotationSpeed={0.2}
-					/>
+			{/* Instagram Feed Section */}
+			<section className="py-16 md:py-24">
+				<div className="container mx-auto px-6">
+					<header className="mb-12">
+						<h2 className="text-3xl md:text-4xl font-light mb-4 text-center">Follow Our Journey</h2>
+						<p className="text-neutral-500 dark:text-neutral-400 text-center max-w-2xl mx-auto">
+							Join our community of goddesses and be the first to see our latest creations.
+						</p>
+					</header>
+					<InstagramFeed />
 				</div>
 			</section>
 
@@ -51,7 +40,7 @@ export default function Home() {
 				</div>
 			</section>
 
-			{/* Shop Section */}
+			{/* Featured Collection Section */}
 			<section className="py-16 md:py-24">
 				<div className="container mx-auto px-6">
 					<header className="flex justify-between items-center mb-12">

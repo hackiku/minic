@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import Nav from "~/components/layout/Nav";
 import Footer from "~/components/layout/Footer";
-
+import { ThemeProvider } from "~/components/theme-provider";
 import { TRPCReactProvider } from "~/trpc/react";
 
 export const metadata: Metadata = {
@@ -23,11 +23,20 @@ export default function RootLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<html lang="en" className={`${geist.variable}`}>
-			<body className="bg-neutral-950 text-white">
-				<Nav />
-				<TRPCReactProvider>{children}</TRPCReactProvider>
-				<Footer />
+		<html lang="en" className={`${geist.variable}`} suppressHydrationWarning>
+			<body className="" suppressHydrationWarning>
+				<TRPCReactProvider>
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						<Nav />
+						{children}
+						<Footer />
+					</ThemeProvider>
+				</TRPCReactProvider>
 			</body>
 		</html>
 	);

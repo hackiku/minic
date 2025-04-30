@@ -1,12 +1,11 @@
-// src/components/layout/Footer.ts
-
+// src/components/layout/Footer.tsx
 import React from 'react';
 
 const Footer = () => {
 	const currentYear = new Date().getFullYear();
 
 	return (
-		<footer className="bg-black py-12 md:py-16">
+		<footer className="bg-black dark:bg-neutral-950 py-12 md:py-16 text-white">
 			<div className="container mx-auto px-6">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
 					<div>
@@ -54,7 +53,7 @@ const Footer = () => {
 							<input
 								type="email"
 								placeholder="your@email.com"
-								className="flex-1 bg-neutral-900 border border-neutral-800 px-3 py-2 
+								className="flex-1 bg-neutral-900 dark:bg-neutral-800 border border-neutral-800 dark:border-neutral-700 px-3 py-2 
                          focus:border-pink-300 focus:outline-none"
 							/>
 							<button className="bg-pink-300 text-black px-4 py-2 font-mono uppercase text-sm">
@@ -64,7 +63,7 @@ const Footer = () => {
 					</div>
 				</div>
 
-				<div className="pt-8 border-t border-neutral-900 flex flex-col md:flex-row justify-between items-center text-sm text-neutral-500">
+				<div className="pt-8 border-t border-neutral-900 dark:border-neutral-800 flex flex-col md:flex-row justify-between items-center text-sm text-neutral-500">
 					<p>© {currentYear} EVA. All rights reserved.</p>
 
 					<div className="flex space-x-6 mt-4 md:mt-0">

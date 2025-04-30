@@ -1,4 +1,4 @@
-// src/app/_components/3d/world/EnhancedApple.tsx
+// src/components/3d/world/EnhancedApple.tsx
 'use client';
 
 import React, { useRef, useEffect } from 'react';
@@ -6,7 +6,8 @@ import { useFrame } from '@react-three/fiber';
 import { useGLTF, Wireframe } from '@react-three/drei';
 import type { Mesh, Group } from 'three';
 import * as THREE from 'three';
-import { BRAND_PINK, BRAND_PINK_LIGHT } from '../data/colors';
+import { BRAND_PINK, BRAND_PINK_LIGHT } from '~/app/_components/3d/data/colors';
+import { useTheme } from 'next-themes';
 
 // This would be the path to your apple GLTF model
 // For now we'll use a sphere as placeholder
@@ -22,6 +23,11 @@ export default function EnhancedApple({
 }) {
 	const meshRef = useRef<Mesh>(null);
 	const groupRef = useRef<Group>(null);
+	const { theme } = useTheme();
+
+	// Determine color based on theme
+	const appleColor = theme === 'dark' ? BRAND_PINK_LIGHT : BRAND_PINK;
+	const glowColor = theme === 'dark' ? new THREE.Color(BRAND_PINK_LIGHT).multiplyScalar(1.2) : new THREE.Color(BRAND_PINK);
 
 	// If you have a GLTF model, uncomment this
 	// const { nodes } = useGLTF(MODEL_PATH);
@@ -39,6 +45,9 @@ export default function EnhancedApple({
 		// Optional additional effect for the mesh
 		if (meshRef.current) {
 			// Subtle pulse or other effect could be added here
+			// For example, a breathing effect:
+			const breathe = Math.sin(clock.getElapsedTime() * 0.5) * 0.03 + 1;
+			meshRef.current.scale.set(breathe, breathe, breathe);
 		}
 	});
 
@@ -58,9 +67,9 @@ export default function EnhancedApple({
 			<mesh position={[0, 0, -0.1]}>
 				<sphereGeometry args={[size * 1.2, 32, 32]} />
 				<meshBasicMaterial
-					color={color}
+					color={glowColor}
 					transparent={true}
-					opacity={glowIntensity}
+					opacity={theme === 'dark' ? glowIntensity * 1.5 : glowIntensity}
 					side={THREE.BackSide}
 				/>
 			</mesh>
@@ -70,20 +79,20 @@ export default function EnhancedApple({
 				<sphereGeometry args={[size, 32, 32]} />
 				{wireframe ? (
 					<meshStandardMaterial
-						color={color}
+						color={appleColor}
 						wireframe={true}
-						emissive={color}
-						emissiveIntensity={0.4}
+						emissive={appleColor}
+						emissiveIntensity={theme === 'dark' ? 0.6 : 0.4}
 					/>
 				) : (
 					<Wireframe
 						thickness={2}
-						color={color}
-						backfaceColor={BRAND_PINK_LIGHT}
+						color={appleColor}
+						backfaceColor={theme === 'dark' ? BRAND_PINK : BRAND_PINK_LIGHT}
 						fillMix={0.2}
-						fillOpacity={0.2}
+						fillOpacity={theme === 'dark' ? 0.3 : 0.2}
 					>
-						<meshBasicMaterial color={color} transparent opacity={0.1} />
+						<meshBasicMaterial color={appleColor} transparent opacity={theme === 'dark' ? 0.15 : 0.1} />
 					</Wireframe>
 				)}
 			</mesh>
