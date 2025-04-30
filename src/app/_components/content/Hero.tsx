@@ -46,18 +46,13 @@ const Hero = () => {
 	}, []);
 
 	return (
-		<section className="relative min-h-screen flex items-center pt-20">
-			{/* Background elements */}
-			<div className="absolute inset-0 overflow-hidden">
-				<div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-b from-pink-200/10 to-transparent dark:from-pink-200/5 rounded-full blur-3xl"></div>
-				<div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-gradient-to-t from-pink-100/5 to-transparent dark:from-pink-300/5 rounded-full blur-3xl"></div>
-			</div>
-
+		<section className="relative h-[65vh] flex items-center pt-20">
+			
 			<div className="container mx-auto px-6 z-10 grid md:grid-cols-2 gap-12 items-center">
 				<div>
-					<h1 className="text-5xl md:text-6xl lg:text-7xl font-light leading-16 mb-8">
+					<h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-12 mb-8">
 						Who will you give
-						<span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-300 dark:from-pink-300 dark:to-pink-200 block mt-2">
+						<span className="text-primary block mt-2">
 							the apple to?
 						</span>
 					</h1>
@@ -91,9 +86,9 @@ const Hero = () => {
 							</div>
 						)}
 
-						<p className="mt-4 text-sm text-neutral-500">
+						{/* <p className="mt-4 text-sm text-neutral-500">
 							Limited spots available. €30 reservation fee applies to your first box.
-						</p>
+						</p> */}
 					</div>
 				</div>
 
